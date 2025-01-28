@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Place Keeper</title>
+    <link rel="stylesheet" href="./js/service/style.css">
+</head>
+</head>
+<body onload="app.onInit()">
+    <header>
+        <h1>Place Keeper</h1>
+    </header>
+    <main>
+        <nav>
+            <button data-section="home" onclick="app.showSection('home-section')">Home</button>
+            <button data-section="user-pref" onclick="app.showSection('user-pref')">User-pref</button>
+            <button data-section="map" onclick="app.showSection('map-section')">Map</button>
+        </nav>
+    
+    <section class="home" id="home-section">
+        <h2>Welcome to Place Keeper</h2>
+        <p>Find your way back to your favorite places</p>
+        <div class="home-graphics">
+            <img src="./img/map-icon.png" alt="Map Icon" class="home-icon" />
+            <img src="./img/places-icon.png" alt="Places Icon" class="home-icon" />
+        </div>
+        <p>Your birth time: <span id="birthtime-display">Not set</span></p>
+    </section>
+
+    <section class="user-pref" id="user-pref">
+        <h2>User preferences</h2>
+        <form id="preferences-form">
+        <div class="form-group">
+            <label for="email">E-Mail:</label>
+            <input type="email" id="email" placeholder="Insert your email here" />
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="range" id="age" min="0" max="100" value="18" />
+            <span id="age-value">18</span>
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <input list="gender-options" id="gender"placeholder="Select gender or type" />
+            <datalist id="gender-options">
+                <option value="Male"></option>
+                <option value="Female"></option>
+                <option value="Other"></option>
+            </datalist>
+        </div>
+
+        <div class="form-group">
+            <h3>Colors -</h3>
+            <label for="bgColor">Set Background Color:</label>
+            <input type="color" id="bgColor" value="#000000" />
+        </div>
+
+        <div class="form-group">
+            <label for="txtColor">Set Text Color:</label>
+            <input type="color" id="txtColor" value="#ffffff" />
+        </div>
+
+        <div class="form-group">
+            <label for="birthDate">Birth Date:</label>
+            <input type="date" id="birthDate" />
+        </div>
+
+        <div class="form-group">
+            <label for="birthTime">Birth Time:</label>
+            <input type="time" id="birthTime" />
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn" onclick="app.onSaveUserPref(event)">Set</button>
+        </div>
+    </form>
+    </section>
+    <section class="map" id="map-section">
+        <h2>Saved Places</h2>
+        <ul id="places-list"></ul>
+        <div id="map"></div>
+        <button id = "myLocationButton"onclick="app.onGetUserLocation()">
+            <img src="/img/Screenshot 2025-01-25 182719.png"></button>
+        <button id="downloadCsvButton" onclick="app.onDownloadCsv()">Download CSV
+            <img src="/img/csvImg.png"></button>
+    </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 App</p>
+      </footer>
+      <script type = "module" src="/js/places.controller.js"></script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASJFieaqdaGGDpfy-THrSnJ-_nD1wn61g&callback=app.initMap"></script>
+      
+</body>
+</html>
