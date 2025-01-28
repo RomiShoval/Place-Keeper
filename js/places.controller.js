@@ -18,11 +18,11 @@ window.app = {
     handleAge,
     updateBirthtimeDisplay,
     onDownloadCsv,
-    deleteUserOnRefersh
+    deleteUserOnRefersh,
 }
 
 function onInit() {
-    deleteUserOnRefersh()
+    //deleteUserOnRefersh()
     console.log("1")
     const userPrefs = userService.loadPref();
     if (userPrefs) {
@@ -42,13 +42,13 @@ function onInit() {
 
 function deleteUserOnRefersh(){
     try{
-        // window.onbeforeunload = function(event) {
-        //     event.preventDefault();
-        //     event.returnValue = ""; 
-        //     setTimeout(() => {
-        //         userService.removeUserWhenRefresh();
-        //     }, 10);
-        // }
+        window.onbeforeunload = function(event) {
+            event.preventDefault();
+            event.returnValue = ""; 
+            setTimeout(() => {
+                userService.removeUserWhenRefresh();
+            }, 10);
+        }
     }
     catch(error){
         console.log("Error during unload:",error)
